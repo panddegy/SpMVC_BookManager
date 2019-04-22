@@ -48,6 +48,21 @@
 		<c:when test="${BODY=='USERINFO'}">
 			<%@include file="/WEB-INF/views/bodies/user/user-info.jspf" %>
 		</c:when>
+		<c:when test="${BODY=='RENTLIST'}">
+			<%@include file="/WEB-INF/views/bodies/rent/rent-list.jspf" %>
+		</c:when>
+		<c:when test="${BODY=='RETURNLIST'}">
+			<%@include file="/WEB-INF/views/bodies/rent/rent-list.jspf" %>
+		</c:when>
+		<c:when test="${BODY=='RENTINSERT'}">
+			<%@include file="/WEB-INF/views/bodies/rent/rent-insert.jspf" %>
+		</c:when>
+		<c:when test="${BODY=='RENTUPDATE'}">
+			<%@include file="/WEB-INF/views/bodies/rent/rent-insert.jspf" %>
+		</c:when>
+		<c:when test="${BODY=='RENTINFO'}">
+			<%@include file="/WEB-INF/views/bodies/rent/rent-info.jspf" %>
+		</c:when>
 	</c:choose>
 </section>
 </body>

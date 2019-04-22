@@ -12,8 +12,11 @@ import com.biz.book.model.RentVO;
 
 public interface RentMapper {
 
-	@Select(" select * from tbl_rent ")
+	@Select(" select * from tbl_rent order by rent_date desc ")
 	public List<RentVO> selectAllRents();
+	
+	@Select(" select * from tbl_rent where rent_return_yn='n' order by rent_date desc ")
+	public List<RentVO> selectAllReturns();
 	
 	@Select(" select * from tbl_rent where rent_date >= #{rent_date} order by rent_date desc ")
 	public List<RentVO> findByRentDate(String rent_date);
@@ -32,5 +35,6 @@ public interface RentMapper {
 
 	@Select(" select * from tbl_rent where book_seq=#{book_seq} and rent_return_yn='n' ")
 	public RentVO findByRentBookSeq(long book_seq);
+	
 	
 }

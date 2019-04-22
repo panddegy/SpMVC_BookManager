@@ -66,6 +66,12 @@ $(function(){
 	$(".btn-delete").click(function(){
 		location.href="${rootPath}/user/delete/${USER.user_seq}"
 	})
+	$(".btn-rent").click(function(){
+		location.href="${rootPath}/rent/book/${USER.user_seq}"
+	})
+	$(".btn-return").click(function(){
+		location.href="${rootPath}/rent/return/${BOOK.book_seq}"
+	})
 })
 </script>
 <article class="content-container">
@@ -100,6 +106,8 @@ $(function(){
 		</div>
 	</div>
 	<div class="btn-wrapper">
+		<button type="button" class="btn-rent">Rent</button>
+		<button type="button" class="btn-return">Return</button>
 		<button type="button" class="btn-update">Update</button>
 		<button type="button" class="btn-delete">Delete</button>
 	</div>

@@ -29,7 +29,7 @@ $(function(){
 			let id=$('#admin_id').val()
 			if(id==""){
 				alert("Input ID")
-				$('#admin_id').focust()
+				$('#admin_id').focus()
 				return
 			}
 			let pass=$('#admin_pass').val()

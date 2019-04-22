@@ -4,22 +4,22 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 
 <style>
-	form{
-		display: flex;
-		flex-direction: column;
-		width: 20%;
-		margin: 0 auto;
-		text-align: center;
-	}
-	label{
-		color: aquamarine;
-		margin: 20px 0;
-		font-style: italic;
-	}
-	input{
-		padding: 8px 16px;
-		background-color: gainsboro;
-	}
+form{
+	display: flex;
+	flex-direction: column;
+	width: 20%;
+	margin: 0 auto;
+	text-align: center;
+}
+label{
+	color: aquamarine;
+	margin: 20px 0;
+	font-style: italic;
+}
+input{
+	padding: 8px 16px;
+	background-color: gainsboro;
+}
 </style>
 <script>
 $(function(){
@@ -29,7 +29,7 @@ $(function(){
 			let temp=$(this).val()
 			if(temp==""){
 				alert("검색할 내용을 입력하세요")
-				$(this).focust()
+				$(this).focus()
 				return
 			}
 			$('form').submit()

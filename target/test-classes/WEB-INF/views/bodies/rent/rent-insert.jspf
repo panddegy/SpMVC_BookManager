@@ -12,6 +12,7 @@ form{
 	transform: translateX(-55px);
 }
 label{
+	width: 100px;
 	color: aquamarine;
 	font-style: italic;
 	margin-right: 20px;
@@ -49,45 +50,46 @@ input[type="file"]{
 }
 </style>
 <script>
+$(function(){
+	$('#rent_search').keydown(function(event) { 
+		if(event.keyCode == '13') { 
+			event.preventDefault();
+			let book_seq=$('#rent_book_seq').val()
+			let search=$('#rent_search').val()
+			if(book_seq>0){
+		        window.name="rent_member"
+		   		window.open("${rootPath}/rent/rent_member?search="+search, "Member List", "width=750, height=500, resizable = no, scrollbars = yes")
+			}
+			let user_seq=$('#rent_user_seq').val()
+			if(user_seq>0){
+				 window.name="rent_book"
+				 window.open("${rootPath}/rent/rent_book?search="+search, "Book List", "width=750, height=500, resizable = no, scrollbars = yes")
+			}
+		}
+	})
 
+})
 </script>
 <article class="content-container">
-	<c:if test="${BODY=='BOOKINSERT'}"><h2>Insert Book</h2></c:if>
-	<c:if test="${BODY=='BOOKUPDATE'}"><h2>Update Book</h2></c:if>
-	<form:form modelAttribute="bookVO" enctype="multipart/form-data" autocomplete="off">
+	<h2>Rental Book</h2>
+	<form:form modelAttribute="rentVO" autocomplete="off" action="${rootPath}/rent/insert">
 	<div class="input-wrapper">
-		<form:label path="book_isbn">ISBN</form:label>
-		<form:input path="book_isbn" id="book_isbn"/>
+		<form:label path="rent_book_seq">Book No</form:label>
+		<form:input path="rent_book_seq" id="rent_book_seq" readonly="true"/>
 	</div>
 	<div class="input-wrapper">
-		<form:label path="book_title">TITLE</form:label>
-		<form:input path="book_title" id="book_title"/>
+		<form:label path="rent_user_seq">Member No</form:label>
+		<form:input path="rent_user_seq" id="rent_user_seq" readonly="true"/>
 	</div>
 	<div class="input-wrapper">
-		<form:label path="book_author">AUTHOR</form:label>
-		<form:input path="book_author" id="book_author"/>
-	</div>
-	<div class="input-wrapper">
-		<form:label path="book_price">PRICE</form:label>
-		<form:input path="book_price" id="book_price"/>
-	</div>
-	<div class="input-wrapper">
-		<form:label path="book_description">DESCRIPTION</form:label>
-		<form:input path="book_description" id="book_description"/>
-	</div>
-	<div class="input-wrapper">
-		<form:label path="book_file">IMAGE</form:label>
-		<form:input type="file" path="book_file"/>
+		<form:label path="rent_search">Search</form:label>
+		<form:input path="rent_search" id="rent_search"/>
 	</div>
 	<div class="input-wrapper">
 		<form:button class="btn-submit">Submit</form:button>
 	</div>
 	</form:form>
 </article>
-
-
-
-
 
 
 

@@ -66,6 +66,12 @@ $(function(){
 	$(".btn-delete").click(function(){
 		location.href="${rootPath}/book/delete/${BOOK.book_seq}"
 	})
+	$(".btn-rent").click(function(){
+		location.href="${rootPath}/rent/member/${BOOK.book_seq}"
+	})
+	$(".btn-return").click(function(){
+		location.href="${rootPath}/rent/return/${BOOK.book_seq}"
+	})
 })
 </script>
 <article class="content-container">
@@ -92,12 +98,12 @@ $(function(){
 		</div>
 	</div>
 	<div class="btn-wrapper">
-		<c:if test="${BOOK.book_rent_yn=='y'}">
-			<button type="button" class="btn-rent">Rent</button>
-		</c:if>
-		<c:if test="${BOOK.book_rent_yn=='n'}">
-			<button type="button" class="btn-return">Return</button>
-		</c:if>
+	<c:if test="${BOOK.book_rent_yn=='y'}">
+		<button type="button" class="btn-rent">Rent</button>
+	</c:if>
+	<c:if test="${BOOK.book_rent_yn=='n'}">
+		<button type="button" class="btn-return">Return</button>
+	</c:if>
 		<button type="button" class="btn-update">Update</button>
 		<button type="button" class="btn-delete">Delete</button>
 	</div>

@@ -1,7 +1,5 @@
 package com.biz.book.model;
 
-import java.util.List;
-
 import org.springframework.web.multipart.MultipartFile;
 
 import lombok.AllArgsConstructor;
@@ -25,7 +23,6 @@ public class BookVO {
 	    book_price number,
 	    book_description nvarchar2(1000),
 	    book_image nvarchar2(125),
-	    book_link nvarchar2(255),
 	    book_rent_yn char(1) default 'y'
 	    constraint check_rent check(book_rent_yn in('y','n'))
 	);
@@ -33,7 +30,7 @@ public class BookVO {
 	private long book_seq;
 	private String book_isbn, book_title, book_author;
 	private int book_price;
-	private String book_description, book_image, book_link, book_rent_yn;
+	private String book_description, book_image, book_rent_yn;
 	private MultipartFile book_file;
 	
 }

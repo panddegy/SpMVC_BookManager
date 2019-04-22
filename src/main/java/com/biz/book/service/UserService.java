@@ -33,6 +33,8 @@ public class UserService {
 
 	public List<UserVO> findByUserName(String searchWord) {
 
+		searchWord="%"+searchWord+"%";
+		
 		return userMapper.findByUserName(searchWord);
 	}
 	
@@ -73,7 +75,7 @@ public class UserService {
 		
 		String fileName=_t.getUser_image();
 		userVO.setUser_image(fileName);
-		if(file!=null) {
+		if(!file.isEmpty()) {
 			fileService.deleteFile(fileName, realPath);
 			String saveName=fileService.fileUpload(file, realPath);
 			if(saveName==null) return 0;

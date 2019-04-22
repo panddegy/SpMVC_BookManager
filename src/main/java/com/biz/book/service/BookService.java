@@ -29,7 +29,14 @@ public class BookService {
 		return bookMapper.selectAllBooks();
 	}
 	
+	public List<BookVO> selectAllRentableBooks(){
+		
+		return bookMapper.selectAllRentableBooks();
+	}
+	
 	public List<BookVO> findByBookName(String searchWord){
+		
+		searchWord="%"+searchWord+"%";
 		
 		return bookMapper.findByBookTitle(searchWord);
 	}
@@ -46,13 +53,15 @@ public class BookService {
 	
 	public int insertBook(BookVO bookVO, MultipartHttpServletRequest request) {
 		
-		MultipartFile file=request.getFile("book_file");
-		String realPath=sevletContext.getRealPath("/files/book/");
-		
-		if(file!=null) {
-			String saveName=fileService.fileUpload(file, realPath);
-			if(saveName==null) return 0;
-			bookVO.setBook_image(saveName);
+		if(request!=null) {
+			MultipartFile file=request.getFile("book_file");
+			String realPath=sevletContext.getRealPath("/files/book/");
+			
+			if(file!=null) {
+				String saveName=fileService.fileUpload(file, realPath);
+				if(saveName==null) return 0;
+				bookVO.setBook_image(saveName);
+			}
 		}
 		bookVO.setBook_rent_yn("y");
 		
@@ -62,19 +71,19 @@ public class BookService {
 	
 	public int updateBook(BookVO bookVO, MultipartHttpServletRequest request) {
 				
-		MultipartFile file=request.getFile("book_file");
-		String realPath=sevletContext.getRealPath("/files/book/");
-		
-		BookVO _t=this.findByBookID(bookVO.getBook_seq());
-		String fileName=_t.getBook_image();
-		bookVO.setBook_image(fileName);
-		
-		if(!file.getOriginalFilename().equals("")) {
-			fileService.deleteFile(_t.getBook_image(), realPath);
-			bookVO.setBook_image(fileService.fileUpload(file, realPath));
+		if(request!=null) {
+			MultipartFile file=request.getFile("book_file");
+			String realPath=sevletContext.getRealPath("/files/book/");
+			
+			BookVO _t=this.findByBookID(bookVO.getBook_seq());
+			String fileName=_t.getBook_image();
+			bookVO.setBook_image(fileName);
+			
+			if(!file.isEmpty()){
+				fileService.deleteFile(_t.getBook_image(), realPath);
+				bookVO.setBook_image(fileService.fileUpload(file, realPath));
+			}
 		}
-		
-		bookVO.setBook_rent_yn("y");
 		
 		return bookMapper.updateBook(bookVO);
 	}

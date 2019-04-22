@@ -9,6 +9,7 @@ form{
 	width: 25%;
 	margin: 20px auto;
 	text-align: center;
+	transform: translateX(-55px);
 }
 label{
 	color: aquamarine;
@@ -73,10 +74,6 @@ input[type="file"]{
 	<div class="input-wrapper">
 		<form:label path="book_description">DESCRIPTION</form:label>
 		<form:input path="book_description" id="book_description"/>
-	</div>
-	<div class="input-wrapper">
-		<form:label path="book_link">LINK</form:label>
-		<form:input path="book_link" id="book_link"/>
 	</div>
 	<div class="input-wrapper">
 		<form:label path="book_file">IMAGE</form:label>

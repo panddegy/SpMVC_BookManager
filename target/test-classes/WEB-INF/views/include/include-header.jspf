@@ -57,6 +57,7 @@ li{
 			<div class="dropdown-content"  id="dropdown-rental">
 				<a href="${rootPath}/rent/list" >Rental List</a>
 				<a href="${rootPath}/rent/insert" >Rental Book</a>
+				<a href="${rootPath}/rent/update" >Return Book</a>
 			</div>
 		</li>
 		<li class="dropdown-btn-system"><a href="javascript:void(0)">System Management</a>

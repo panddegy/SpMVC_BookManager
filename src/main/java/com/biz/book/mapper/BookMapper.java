@@ -12,8 +12,11 @@ import com.biz.book.model.BookVO;
 
 public interface BookMapper {
 
-	@Select(" select * from tbl_book ")
+	@Select(" select * from tbl_book order by book_title desc ")
 	public List<BookVO> selectAllBooks();
+	
+	@Select(" select * from tbl_book where book_rent_yn='y' order by book_title desc ")
+	public List<BookVO> selectAllRentableBooks();
 	
 	@Select(" select * from tbl_book where book_title like #{book_title} ")
 	public List<BookVO> findByBookTitle(String book_title);

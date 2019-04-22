@@ -27,7 +27,6 @@ public class BookSQL {
 				.VALUES("book_price", "#{book_price}")
 				.VALUES("book_description", "#{book_description,jdbcType=NVARCHAR}")
 				.VALUES("book_image", "#{book_image,jdbcType=NVARCHAR}")
-				.VALUES("book_link", "#{book_link,jdbcType=NVARCHAR}")
 				.VALUES("book_rent_yn", "#{book_rent_yn,jdbcType=CHAR}");
 		
 		return sql.toString();
@@ -42,7 +41,6 @@ public class BookSQL {
 				.SET("book_price=#{book_price}")
 				.SET("book_description=#{book_description,jdbcType=NVARCHAR}")
 				.SET("book_image=#{book_image,jdbcType=NVARCHAR}")
-				.SET("book_link=#{book_link,jdbcType=NVARCHAR}")
 				.SET("book_rent_yn=#{book_rent_yn,jdbcType=CHAR}")
 				.WHERE("book_seq=#{book_seq}");
 		

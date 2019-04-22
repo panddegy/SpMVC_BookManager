@@ -12,7 +12,7 @@ import com.biz.book.model.UserVO;
 
 public interface UserMapper {
 
-	@Select(" select * from tbl_user ")
+	@Select(" select * from tbl_user order by user_reg_date desc")
 	public List<UserVO> selectAllUsers();
 	
 	@Select(" select * from tbl_user where user_name like #{user_name} ")

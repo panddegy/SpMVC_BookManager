@@ -51,61 +51,61 @@
 	background-color: dimgray;
 }
 .content-title{
-	flex: 0 0 50px;
+	flex: 0 0 80px;
 	flex-wrap: nowrap;
 }
 .content-text{
-	flex: 0 0 230px;
+	flex: 0 0 200px;
 }
 </style>
 <script>
 $(function(){
 	$(".btn-update").click(function(){
-		location.href="${rootPath}/book/update?book_seq=${BOOK.book_seq}"
+		location.href="${rootPath}/user/update?user_seq=${USER.user_seq}"
 	})
 	$(".btn-delete").click(function(){
-		location.href="${rootPath}/book/delete/${BOOK.book_seq}"
-	})
-	$(".btn-rent").click(function(){
-		location.href="${rootPath}/rent/member/${BOOK.book_seq}"
-	})
-	$(".btn-return").click(function(){
-		location.href="${rootPath}/rent/return/${BOOK.book_seq}"
+		location.href="${rootPath}/user/delete/${USER.user_seq}"
 	})
 })
 </script>
 <article class="content-container">
-	<h2>Book Information</h2>
+	<h2>Rental Information</h2>
 	<div class="info-wrapper">
-		<div class="image-wrapper"><img alt="Book Image" src="${rootPath}/files/book/${BOOK.book_image}" width="300px"></div>
+		<div class="image-wrapper"><img alt="Book Image" src="${rootPath}/files/user/${USER.user_image}" width="300px"></div>
 		<div class="content-wrapper">
 			<div class="content">
-				<div class="content-title">제목 :&nbsp;</div>
+				<div class="content-title">책 제목&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;</div>
 				<div class="content-text">${BOOK.book_title}</div>
 			</div>
 			<div class="content">
-				<div class="content-title">저자 :&nbsp;</div>
-				<div class="content-text">${BOOK.book_author}</div>
+				<div class="content-title">대여날짜:&nbsp;</div>
+				<div class="content-text">${RENT.rent_date}</div>
 			</div>
 			<div class="content">
-				<div class="content-title">가격 :&nbsp;</div>
-				<div class="content-text">${BOOK.book_price}</div>
+				<div class="content-title">반납일짜:&nbsp;</div>
+				<div class="content-text">${RENT.rent_return_date}</div>
 			</div>
 			<div class="content">
-				<div class="content-title">설명 :&nbsp;</div>
-				<div class="content-text">${BOOK.book_description}</div>
+				<div class="content-title">회원이름:&nbsp;</div>
+				<div class="content-text">${USER.user_name}</div>
+			</div>
+			<div class="content">
+				<div class="content-title">전화번호:&nbsp;</div>
+				<div class="content-text">${USER.user_phone}</div>
+			</div>
+			<div class="content">
+				<div class="content-title">반납여부:&nbsp;</div>
+				<div class="content-text">${RENT.rent_return_yn}</div>
 			</div>
 		</div>
 	</div>
 	<div class="btn-wrapper">
-	<c:if test="${BOOK.book_rent_yn=='y'}">
-		<button type="button" class="btn-rent">Rent</button>
-	</c:if>
-	<c:if test="${BOOK.book_rent_yn=='n'}">
-		<button type="button" class="btn-return">Return</button>
-	</c:if>
-		<button type="button" class="btn-update">Update</button>
-		<button type="button" class="btn-delete">Delete</button>
+		<c:if test="${BOOK.book_rent_yn=='y'}">
+			<button type="button" class="btn-rent">Rent</button>
+		</c:if>
+		<c:if test="${BOOK.book_rent_yn=='n'}">
+			<button type="button" class="btn-return">Return</button>
+		</c:if>
 	</div>
 </article>
 

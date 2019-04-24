@@ -31,7 +31,6 @@ $(function(){
 		let user_seq=$(this).attr("data-id")
 		let user_name=$(this).attr("data-name")
 		opener.document.getElementById("rent_user_seq").value=user_seq
-		opener.document.getElementById("rent_search").value=user_name
 		window.close()
 	})
 })

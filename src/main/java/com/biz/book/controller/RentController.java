@@ -92,10 +92,10 @@ public class RentController {
 	}
 	
 	@RequestMapping(value="/insert", method=RequestMethod.GET)
-	public String insertRent(Model model) {
+	public String insertRent(@ModelAttribute RentVO rentVO, Model model, String _t) {
 		
-		model.addAttribute("BODY", "BOOKLIST");
-		model.addAttribute("LIST", bookService.selectAllRentableBooks());
+		model.addAttribute("BODY", "RENTINSERT");
+		model.addAttribute("rentVO", rentVO);
 		
 		return "home";
 	}

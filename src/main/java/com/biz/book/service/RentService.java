@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.biz.book.mapper.RentMapper;
 import com.biz.book.model.BookVO;
 import com.biz.book.model.RentVO;
+import com.biz.book.model.UserVO;
 
 @Service
 public class RentService {
@@ -18,6 +19,9 @@ public class RentService {
 	
 	@Autowired
 	BookService bookService;
+	
+	@Autowired
+	UserService userService;
 
 	public List<RentVO> selectAllRents() {
 
@@ -63,6 +67,11 @@ public class RentService {
 		BookVO bookVO=bookService.findByBookID(rentVO.getRent_book_seq());
 		bookVO.setBook_rent_yn("n");
 		bookService.updateBook(bookVO, null);
+		
+		UserVO userVO=userService.findByUserID(rentVO.getRent_user_seq());
+		userVO.setUser_rent_count(userVO.getUser_rent_count()+1);
+		userVO.setUser_rent_total(userVO.getUser_rent_total()+bookVO.getBook_price());
+		userService.updateUser(userVO, null);
 		
 		return rentMapper.insertRent(rentVO);
 	}

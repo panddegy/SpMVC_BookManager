@@ -51,20 +51,31 @@ input[type="file"]{
 </style>
 <script>
 $(function(){
-	$('#rent_search').keydown(function(event) { 
+	let rent_user_seq=$("#rent_user_seq").val()
+	let rent_book_seq=$("#rent_book_seq").val()
+	if(rent_user_seq==0){
+		$("#rent_user_seq").val("")	
+		$("#rent_user_seq").focus()
+	}
+	if(rent_book_seq==0){
+		$("#rent_book_seq").val("")
+		$("#rent_book_seq").focus()
+	}
+	
+	$('#rent_book_seq').keydown(function(event) { 
 		if(event.keyCode == '13') { 
 			event.preventDefault();
-			let book_seq=$('#rent_book_seq').val()
-			let search=$('#rent_search').val()
-			if(book_seq>0){
-		        window.name="rent_member"
-		   		window.open("${rootPath}/rent/rent_member?search="+search, "Member List", "width=750, height=500, resizable = no, scrollbars = yes")
-			}
-			let user_seq=$('#rent_user_seq').val()
-			if(user_seq>0){
-				 window.name="rent_book"
-				 window.open("${rootPath}/rent/rent_book?search="+search, "Book List", "width=750, height=500, resizable = no, scrollbars = yes")
-			}
+			let search=$('#rent_book_seq').val()
+			 window.name="rent_book"
+			 window.open("${rootPath}/rent/rent_book?search="+search, "Book List", "width=850, height=600, resizable = no, scrollbars = yes")
+		}
+	})
+	$('#rent_user_seq').keydown(function(event) { 
+		if(event.keyCode == '13') { 
+			event.preventDefault();
+			let search=$('#rent_user_seq').val()
+			window.name="rent_member"
+		   	window.open("${rootPath}/rent/rent_member?search="+search, "Member List", "width=850, height=600, resizable = no, scrollbars = yes")
 		}
 	})
 
@@ -74,21 +85,23 @@ $(function(){
 	<h2>Rental Book</h2>
 	<form:form modelAttribute="rentVO" autocomplete="off" action="${rootPath}/rent/insert">
 	<div class="input-wrapper">
+		<form:label path="rent_user_seq">Member NO</form:label>
+		<form:input path="rent_user_seq" id="rent_user_seq" />
+	</div>
+	<div>
+	<p id="member-name"></p>
+	</div>
+	<div class="input-wrapper">
 		<form:label path="rent_book_seq">Book No</form:label>
-		<form:input path="rent_book_seq" id="rent_book_seq" readonly="true"/>
-	</div>
-	<div class="input-wrapper">
-		<form:label path="rent_user_seq">Member No</form:label>
-		<form:input path="rent_user_seq" id="rent_user_seq" readonly="true"/>
-	</div>
-	<div class="input-wrapper">
-		<form:label path="rent_search">Search</form:label>
-		<form:input path="rent_search" id="rent_search"/>
+		<form:input path="rent_book_seq" id="rent_book_seq" />
 	</div>
 	<div class="input-wrapper">
 		<form:button class="btn-submit">Submit</form:button>
 	</div>
 	</form:form>
+	<div id="rental-list">
+	
+	</div>
 </article>
 
 

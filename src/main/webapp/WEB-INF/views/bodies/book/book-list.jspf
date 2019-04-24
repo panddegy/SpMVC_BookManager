@@ -11,7 +11,8 @@ table{
 }
 td, th{
 	border: 1px solid gainsboro;
-	padding: 4px 8px;	
+	padding: 4px 8px;
+	text-overflow: ellipsis;
 }
 .table-row{
 	cursor: pointer;

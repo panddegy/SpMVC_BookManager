@@ -30,9 +30,7 @@ td, th{
 $(function(){
 	$(".table-row").click(function(){
 		let book_seq=$(this).attr("data-id")
-		let book_title=$(this).attr("data-title")
 		opener.document.getElementById("rent_book_seq").value=book_seq
-		opener.document.getElementById("rent_search").value=book_title
 		window.close()
 	})
 })

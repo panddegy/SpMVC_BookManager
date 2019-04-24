@@ -28,5 +28,4 @@ public class RentVO {
 	private String rent_date, rent_return_date;
 	private long rent_book_seq, rent_user_seq;
 	private String rent_return_yn;
-	private String rent_search;
 }

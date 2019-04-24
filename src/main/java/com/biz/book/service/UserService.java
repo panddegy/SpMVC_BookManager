@@ -3,6 +3,7 @@ package com.biz.book.service;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.IntStream;
 
 import javax.servlet.ServletContext;
 
@@ -50,14 +51,17 @@ public class UserService {
 
 	public int insertUser(UserVO userVO, MultipartHttpServletRequest request) {
 
-		MultipartFile file=request.getFile("user_file");
-		String realPath=sevletContext.getRealPath("/files/user/");
-		
-		if(file!=null) {
-			String saveName=fileService.fileUpload(file, realPath);
-			if(saveName==null) return 0;
-			userVO.setUser_image(saveName);
+		if(request!=null) {
+			MultipartFile file=request.getFile("user_file");
+			String realPath=sevletContext.getRealPath("/files/user/");
+			
+			if(file!=null) {
+				String saveName=fileService.fileUpload(file, realPath);
+				if(saveName==null) return 0;
+				userVO.setUser_image(saveName);
+			}
 		}
+		
 		SimpleDateFormat sf=new SimpleDateFormat("yyyy-MM-dd");
 		Date d=new Date();
 		String today = sf.format(d);
@@ -68,18 +72,20 @@ public class UserService {
 
 	public int updateUser(UserVO userVO, MultipartHttpServletRequest request) {
 
-		MultipartFile file=request.getFile("user_file");
-		String realPath=sevletContext.getRealPath("/files/user/");
-		
-		UserVO _t=userMapper.findByUserID(userVO.getUser_seq());
-		
-		String fileName=_t.getUser_image();
-		userVO.setUser_image(fileName);
-		if(!file.isEmpty()) {
-			fileService.deleteFile(fileName, realPath);
-			String saveName=fileService.fileUpload(file, realPath);
-			if(saveName==null) return 0;
-			userVO.setUser_image(saveName);
+		if(request!=null) {
+			MultipartFile file=request.getFile("user_file");
+			String realPath=sevletContext.getRealPath("/files/user/");
+			
+			UserVO _t=userMapper.findByUserID(userVO.getUser_seq());
+			
+			String fileName=_t.getUser_image();
+			userVO.setUser_image(fileName);
+			if(!file.isEmpty()) {
+				fileService.deleteFile(fileName, realPath);
+				String saveName=fileService.fileUpload(file, realPath);
+				if(saveName==null) return 0;
+				userVO.setUser_image(saveName);
+			}
 		}
 		
 		return userMapper.updateUser(userVO);
